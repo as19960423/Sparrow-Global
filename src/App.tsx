@@ -187,14 +187,12 @@ export default function App() {
                 </div>
                 <div>
                   <span className="text-base font-extrabold tracking-tight font-sans text-dark dark:text-white uppercase">GLOBAL SPARROW</span>
-                  <span className="hidden sm:inline-block text-[10px] text-slate-400 font-medium ml-2 font-sans">ОБРАЗОВАНИЕ И ИММИГРАЦИЯ</span>
                 </div>
               </div>
 
               {/* Navigation tabs with proper touch sizing */}
               <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
                 <a href="#services" className="hover:text-brand dark:hover:text-brand transition-all">Услуги</a>
-                <a href="#authority" className="hover:text-brand dark:hover:text-brand transition-all">Поступления</a>
                 <a href="#tariffs" className="hover:text-brand dark:hover:text-brand transition-all">Тарифы</a>
                 <a href="#challenge" className="hover:text-brand dark:hover:text-brand transition-all font-sans">Выиграть скидку</a>
                 <a href="#testimonials" className="hover:text-brand dark:hover:text-brand transition-all font-sans">Отзывы</a>
@@ -603,12 +601,6 @@ export default function App() {
                     </div>
 
                     <div className="flex items-center gap-3 border-t border-gray-100 dark:border-slate-800/60 pt-4 mt-6">
-                      <img 
-                        src={item.avatar} 
-                        alt={item.name} 
-                        className="w-10 h-10 rounded-full object-cover border border-slate-200" 
-                        referrerPolicy="no-referrer"
-                      />
                       <div>
                         <p className="text-xs font-bold text-dark dark:text-white font-sans">{item.name}</p>
                         <p className="text-[10px] text-slate-400 font-sans mt-0.5">{item.role}</p>
@@ -623,68 +615,15 @@ export default function App() {
           </section>
 
           {/* H. CONVERSION CTA & FOOTER */}
-          <section className="py-20 bg-dark text-white relative overflow-hidden border-t border-slate-950" id="contacts">
+          <section className="py-12 bg-dark text-white relative overflow-hidden border-t border-slate-950" id="contacts">
             
             {/* Ambient warm lights */}
-            <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-gradient-to-tr from-brand/10 via-orange-600/5 to-transparent rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute bottom-0 right-0 w-[550px] h-[350px] bg-gradient-to-tr from-brand/10 via-orange-600/5 to-transparent rounded-full blur-3xl pointer-events-none" />
 
-            <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-12">
-              
-              <div className="max-w-2xl mx-auto space-y-4">
-                <h3 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-none font-sans">
-                  Время сделать первый шаг к глобальным переменам
-                </h3>
-                <p className="text-sm text-slate-400 max-w-lg mx-auto font-sans leading-relaxed">
-                  Оставьте контакты. Наши ведущие иммиграционные адвокаты и академические академики составят для вас бесплатную дорожную карту.
-                </p>
-              </div>
-
-              {/* Lead Capture Form */}
-              <div className="max-w-xl mx-auto bg-white/5 border border-white/10 p-6 sm:p-8 rounded-3xl backdrop-blur-sm" id="footer-lead-form">
-                <form
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    handleOpenModal('Индивидуальный разбор профиля - Футер');
-                  }}
-                  className="space-y-4 text-left"
-                >
-                  <div>
-                    <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">
-                      Ваше Имя
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      placeholder="Иван"
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-2xl text-xs text-white placeholder-slate-400 focus:outline-none focus:border-brand focus:bg-white/10 transition-all font-sans"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">
-                      Номер WhatsApp
-                    </label>
-                    <input
-                      type="tel"
-                      required
-                      placeholder="+7 (707) 123-4567"
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-2xl text-xs text-white placeholder-slate-400 focus:outline-none focus:border-brand focus:bg-white/10 transition-all font-sans"
-                    />
-                  </div>
-
-                  <button
-                    type="submit"
-                    data-track="footer-submit-click"
-                    className="w-full py-4 bg-brand hover:bg-[#E05216] text-white font-bold text-xs rounded-2xl active:scale-[0.98] transition-all cursor-pointer shadow-lg shadow-orange-700/20 flex items-center justify-center gap-1.5 font-sans"
-                  >
-                    <Send className="w-3.5 h-3.5" />
-                    Получить бесплатный план-консультацию
-                  </button>
-                </form>
-              </div>
+            <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
               {/* Footer contact details and copyright */}
-              <div className="border-t border-white/10 pt-10 flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-slate-405" id="footer-terms-row">
+              <div className="flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-slate-405" id="footer-terms-row">
                 <div className="flex items-center gap-2">
                   <SparrowSVG state="base" size={20} />
                   <span className="font-extrabold text-white font-sans text-sm tracking-tight uppercase">GLOBAL SPARROW</span>

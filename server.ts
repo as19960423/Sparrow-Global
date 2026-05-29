@@ -118,8 +118,33 @@ ${isScore ? `🎟️ Промокод: ${lead.promoCode}` : ""}
     console.log(`[Email Service] Success! Message sent: ${info.messageId}`);
     return { success: true, messageId: info.messageId };
   } catch (error: any) {
+    const errorStr = error?.message || String(error);
     console.error("[Email Service] Failed to send email via SMTP:", error);
-    return { success: false, error: error?.message || String(error) };
+    
+    if (errorStr.includes("Application-specific password required") || errorStr.includes("534-5.7.9")) {
+      console.error(
+        "\n========================================================================",
+        "\n[HELP] GMAIL SMTP CONFIGURATION ERROR:",
+        "\nYour Gmail account has 2-Step Verification enabled, which requires a custom App Password.",
+        "\nTo fix this:",
+        "\n1. Go to: https://myaccount.google.com/",
+        "\n2. Choose 'Security' on the left side menu.",
+        "\n3. Scroll down to 'How you sign in to Google' & make sure '2-Step Verification' is turned ON.",
+        "\n4. Select 'App passwords' (if not visible, search for 'App passwords' in the search bar).",
+        "\n5. Select 'Mail' and 'Other (Custom name)' (e.g., Global Sparrow Lead Mailer).",
+        "\n6. Copy the generated 16-character password (without spaces).",
+        "\n7. Replace your standard password with this 16-character App Password in the Secrets panel under SMTP_PASS.",
+        "\n========================================================================\n"
+      );
+    }
+    
+    return { 
+      success: false, 
+      error: errorStr, 
+      tip: errorStr.includes("Application-specific password required") || errorStr.includes("534-5.7.9")
+        ? "Please use a Google App Password instead of your primary Gmail password. Check server.ts logs for instructions."
+        : undefined
+    };
   }
 }
 

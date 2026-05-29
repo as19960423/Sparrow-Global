@@ -263,23 +263,13 @@ export const SparrowGame: React.FC<SparrowGameProps> = ({ onUnlockDiscount }) =>
         // UPPER Textbook
         ctx.fillStyle = '#0F766E'; // Teal book
         ctx.fillRect(pipe.x, 0, 52, pipe.top);
-        ctx.fillStyle = '#FFF9F2'; // Pages line
-        ctx.fillRect(pipe.x + 8, pipe.top - 18, 36, 18);
         ctx.strokeStyle = '#042F2E';
         ctx.strokeRect(pipe.x, 0, 52, pipe.top);
-        // Cover lining
-        ctx.fillStyle = '#C10E1C';
-        ctx.fillRect(pipe.x + 2, pipe.top - 6, 48, 4);
 
         // LOWER Textbook
         ctx.fillStyle = '#6D28D9'; // violet book
         ctx.fillRect(pipe.x, gameHeight - pipe.bottom, 52, pipe.bottom);
-        ctx.fillStyle = '#FFF9F2'; // Pages line
-        ctx.fillRect(pipe.x + 8, gameHeight - pipe.bottom, 36, 18);
         ctx.strokeRect(pipe.x, gameHeight - pipe.bottom, 52, pipe.bottom);
-        // Cover lining
-        ctx.fillStyle = '#FF8C00';
-        ctx.fillRect(pipe.x + 2, gameHeight - pipe.bottom + 14, 48, 4);
 
         // Fun academic tags or details on pipes removed as requested
       });
@@ -463,7 +453,7 @@ export const SparrowGame: React.FC<SparrowGameProps> = ({ onUnlockDiscount }) =>
             {currentScore >= 10 ? (
               <div className="my-4 p-2.5 px-4 bg-orange-500/20 border border-orange-500/30 rounded-xl max-w-[280px]">
                 <p className="text-xs text-orange-200 font-sans leading-relaxed">
-                  🎉 Невероятно! Вы разблокировали купон на <strong className="text-white font-bold">{currentScore >= 50 ? '20%' : '10%'} скидку</strong>! Заполните появившуюся форму.
+                  🎉 Невероятно! Вы разблокировали купон на <strong className="text-white font-bold">{currentScore >= 50 ? '20%' : '10%'} скидку</strong>!
                 </p>
                 <div className="mt-2.5 p-2 bg-black/30 border border-orange-500/20 rounded-lg flex items-center gap-1.5 text-[11px] text-orange-300 font-semibold font-sans">
                   <span className="text-base leading-none">📸</span>
