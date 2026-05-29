@@ -465,6 +465,10 @@ export const SparrowGame: React.FC<SparrowGameProps> = ({ onUnlockDiscount }) =>
                 <p className="text-xs text-orange-200 font-sans leading-relaxed">
                   🎉 Невероятно! Вы разблокировали купон на <strong className="text-white font-bold">{currentScore >= 50 ? '20%' : '10%'} скидку</strong>! Заполните появившуюся форму.
                 </p>
+                <div className="mt-2.5 p-2 bg-black/30 border border-orange-500/20 rounded-lg flex items-center gap-1.5 text-[11px] text-orange-300 font-semibold font-sans">
+                  <span className="text-base leading-none">📸</span>
+                  <span className="text-left leading-relaxed">Сделайте скриншот счета и покажите его в чате представителю!</span>
+                </div>
               </div>
             ) : (
               <p className="text-xs text-slate-400 my-3 font-sans max-w-[260px]">

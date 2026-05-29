@@ -81,7 +81,8 @@ export const LeadModal: React.FC<LeadModalProps> = ({
     if (gameScore > 0 && gameDiscount > 0) {
       text += `🎮 Сыграл в полет воробья: набрал *${gameScore}* очков!\n`;
       text += `🎁 Моя скидка составляет: *${gameDiscount}%*\n`;
-      text += `🎟️ Мой промокод: *${promoCode}*`;
+      text += `🎟️ Мой промокод: *${promoCode}* \n`;
+      text += `📸 Я сделал(а) скриншот счета/промокода и сразу отправляю его вам!`;
     } else if (selectedPlan) {
       text += `💼 Интересует тариф: *${selectedPlan}*`;
     }
@@ -129,13 +130,17 @@ export const LeadModal: React.FC<LeadModalProps> = ({
                 <>
                   <div className="mb-6">
                     {gameDiscount > 0 ? (
-                      <div className="p-4 bg-teal-50 border border-teal-100/50 rounded-2xl mb-4">
+                      <div className="p-4 bg-teal-50 border border-teal-100/50 rounded-2xl mb-4 space-y-3">
                         <p className="text-sm font-medium text-teal-800 font-sans">
                           🎉 Поздравляем! Ваш результат в игре: <strong className="text-teal-900 text-base">{gameScore} очков</strong>.
                         </p>
-                        <p className="text-xs text-teal-600 mt-1">
+                        <p className="text-xs text-teal-600">
                           Заполните форму ниже, чтобы забронировать скидку <strong className="text-teal-800 text-sm">{gameDiscount}%</strong> на любую из наших программ обучения!
                         </p>
+                        <div className="p-2.5 bg-white/80 border border-teal-200/50 rounded-xl flex items-start gap-2 text-xs text-teal-900 font-sans">
+                          <span className="text-base leading-none">📸</span>
+                          <span className="leading-relaxed">Пожалуйста, <strong>сделайте скриншот этого экрана (или счета игры)</strong> и покажите его нашему представителю в WhatsApp чате!</span>
+                        </div>
                       </div>
                     ) : selectedPlan ? (
                       <div className="p-4 bg-amber-50/60 border border-amber-100/50 rounded-2xl mb-4">
@@ -232,10 +237,15 @@ export const LeadModal: React.FC<LeadModalProps> = ({
                   </p>
 
                   {gameDiscount > 0 && (
-                    <div className="my-6 p-4 w-full bg-slate-50 border border-slate-100 rounded-2xl">
+                    <div className="my-6 p-4 w-full bg-slate-50 border border-slate-100 rounded-2xl space-y-2.5">
                       <p className="text-xs uppercase tracking-wider text-slate-400 font-semibold mb-1">Ваша персональная скидка {gameDiscount}%</p>
-                      <p className="text-lg font-mono font-bold text-teal-700 tracking-wider font-mono">{promoCode}</p>
-                      <p className="text-[10px] text-slate-400 mt-1">Скопирован и отправлен в вашу форму контактов</p>
+                      <p className="text-lg font-mono font-bold text-teal-700 tracking-wider">{promoCode}</p>
+                      <p className="text-[10px] text-slate-400">Скопирован и отправлен в вашу форму контактов</p>
+                      
+                      <div className="p-3 bg-amber-50 border border-amber-100/30 rounded-xl flex items-start gap-2.5 text-xs text-amber-900 font-sans text-left mt-2">
+                        <span className="text-lg leading-none">📸</span>
+                        <span className="leading-relaxed"><strong>Не забудьте сделать скриншот!</strong> Отправьте его нашему эксперту в чате для мгновенного подтверждения и активации промокода.</span>
+                      </div>
                     </div>
                   )}
 
