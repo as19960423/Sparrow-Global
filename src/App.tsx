@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   Sun, 
@@ -41,6 +41,18 @@ export default function App() {
   // Game scores triggers
   const [gameScore, setGameScore] = useState(0);
   const [gameDiscount, setGameDiscount] = useState(0);
+
+  // Логотип-картинка: скрыт, пока не загрузится (SVG-fallback виден по умолчанию).
+  // С пререндером события load/error могут отстрелить ДО гидрации, поэтому
+  // дополнительно проверяем img.complete в эффекте.
+  const logoRef = useRef<HTMLImageElement>(null);
+  const [logoLoaded, setLogoLoaded] = useState(false);
+  useEffect(() => {
+    const img = logoRef.current;
+    if (img && img.complete && img.naturalWidth > 0) {
+      setLogoLoaded(true);
+    }
+  }, []);
 
   // Load and persist theme preference
   useEffect(() => {
@@ -238,14 +250,12 @@ export default function App() {
               >
                 {/* Standard image mapping as strictly requested by user */}
                 <img 
+                  ref={logoRef}
                   id="main-logo"
                   src="logo.png" 
                   alt="Global Sparrow Logo" 
-                  onError={(e) => { 
-                    // Hide if image doesn't exist, our custom SVG provides pixel-perfect view in the gap
-                    e.currentTarget.style.display = 'none'; 
-                  }}
-                  className="w-full h-full object-contain absolute inset-0 z-10 transition-transform duration-500 group-hover:scale-[1.03]"
+                  onLoad={() => setLogoLoaded(true)}
+                  className={`w-full h-full object-contain absolute inset-0 z-10 transition-transform duration-500 group-hover:scale-[1.03] ${logoLoaded ? '' : 'hidden'}`}
                   referrerPolicy="no-referrer"
                 />
                 

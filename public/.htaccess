@@ -18,10 +18,11 @@ Options -Indexes
   # Красивый адрес API: /api/lead -> /api/lead.php
   RewriteRule ^api/lead/?$ api/lead.php [L,QSA]
 
-  # SPA fallback: все несуществующие пути отдаём на index.html,
-  # реальные файлы (assets, php, картинки) не трогаем
+  # SPA fallback: несуществующие МАРШРУТЫ отдаём на index.html.
+  # Пути с расширением (.png, .js, ...) не трогаем — отсутствующие файлы должны давать 404
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_URI} !\.[a-zA-Z0-9]+$
   RewriteRule . index.html [L]
 </IfModule>
 

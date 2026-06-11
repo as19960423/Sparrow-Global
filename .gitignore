@@ -1,5 +1,6 @@
 node_modules/
 coverage/
+.prerender/
 .DS_Store
 *.log
 .env*
