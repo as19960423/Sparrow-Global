@@ -1,0 +1,25 @@
+# Global Sparrow — переадресатор в корне репозитория.
+#
+# Репозиторий разворачивается целиком в корень сайта (httpdocs),
+# а реальный сайт лежит в подпапке /htdocs. Этот файл прозрачно
+# переписывает все запросы внутрь htdocs/ и закрывает исходники от веба.
+#
+# Если фронтом стоит nginx с раздачей статики — см. nginx.example.conf
+
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Исходники и служебные файлы недоступны снаружи (404).
+  # ВАЖНО: assets здесь нет — URL /assets/* должен переписываться в htdocs/assets/*
+  RewriteRule ^(\.git|node_modules|src|public|scripts|google-apps-script|\.prerender)(/.*)?$ - [R=404,L]
+  RewriteRule ^(package\.json|package-lock\.json|tsconfig\.json|vite\.config\.ts|metadata\.json|README\.md|index\.html|nginx\.example\.conf)$ - [R=404,L]
+
+  # Скрытые файлы и папки (кроме .well-known — нужен для Let's Encrypt)
+  RewriteRule (^|/)\.(?!well-known/) - [R=404,L]
+
+  # Всё остальное обслуживается из htdocs/
+  RewriteCond %{REQUEST_URI} !^/htdocs/
+  RewriteRule ^(.*)$ htdocs/$1 [L]
+</IfModule>

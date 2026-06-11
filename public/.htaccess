@@ -13,7 +13,8 @@ Options -Indexes
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
-  RewriteBase /
+  # Без RewriteBase: относительные подстановки работают и когда htdocs —
+  # корень сайта, и когда это подпапка (переадресация корневым .htaccess)
 
   # Красивый адрес API: /api/lead -> /api/lead.php
   RewriteRule ^api/lead/?$ api/lead.php [L,QSA]
