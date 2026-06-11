@@ -1,0 +1,62 @@
+public/api/storage.php
+  s_deee412da6a683::t_01bdb0e2d5650c 55,57
+  s_deee412da6a683::t_e13c3e519bcaee 1-54,56,58-66
+htdocs/.htaccess
+  s_deee412da6a683::t_a50664b4beb5ab 6,13
+htdocs/api/leads.php
+  s_deee412da6a683::t_a50664b4beb5ab 1-47,49-115
+  s_deee412da6a683::t_c899d0a35ff755 48
+htdocs/assets/index-BPw-ooMZ.js
+  s_deee412da6a683::t_a50664b4beb5ab 1-236
+public/.htaccess
+  s_deee412da6a683::t_eb480f598d15b0 6,13
+public/api/leads.php
+  s_deee412da6a683::t_2532fcc906b2e8 1-47,49-115
+  s_deee412da6a683::t_1367a5f2131b78 48
+.gitignore
+  s_deee412da6a683::t_c90f2efe32cf56 11-15
+htdocs/api/lead.php
+  s_deee412da6a683::t_a50664b4beb5ab 8-9,58,60,64-65,73
+README.md
+  s_deee412da6a683::t_e1a0375c4d7784 60-88
+htdocs/api/config.example.php
+  s_deee412da6a683::t_a50664b4beb5ab 9-10,14-15,25-43
+public/api/lead.php
+  s_deee412da6a683::t_06ef0d08d5a6b5 8-9
+  s_deee412da6a683::t_e6816b6e71c44d 65
+  s_deee412da6a683::t_0dec917a8dd377 58,60,64,73
+public/api/sheets.php
+  s_deee412da6a683::t_0976dd89ada694 4,7-9,20-22,24-33,36-38,40,42-62,65-72,75-98,100,102,105-108,112-143,145-146,153,156,158,161
+.htaccess
+  s_deee412da6a683::t_d2b33f9a0a6497 16
+htdocs/assets/index-zWEhE3bZ.css
+  s_deee412da6a683::t_a50664b4beb5ab 1
+nginx.example.conf
+  s_deee412da6a683::t_d6be5881b0f27f 24-25
+  s_deee412da6a683::t_cf515a93302b4b 17
+htdocs/api/storage.php
+  s_deee412da6a683::t_a50664b4beb5ab 1-54,56,58-66
+  s_deee412da6a683::t_c899d0a35ff755 55,57
+public/api/config.example.php
+  s_deee412da6a683::t_a903c76cd8c1c7 9-10,14-15,25-43
+htdocs/index.html
+  s_deee412da6a683::t_a50664b4beb5ab 8-9
+htdocs/api/sheets.php
+  s_deee412da6a683::t_a50664b4beb5ab 4,7-9,20-22,24-33,36-38,40,42-62,65-72,75-98,100,102,105-108,112-143,145-146,153,156,158,161
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "0bd5bc933ece5486f933ba913305810f0cd48b05",
+  "prompts": {},
+  "sessions": {
+    "s_deee412da6a683": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "eb4c9ac6-f3d8-4919-965d-06762fe5c7bb",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Yerbol Syzdyk <yerbol_syzdyk@epam.com>"
+    }
+  }
+}
