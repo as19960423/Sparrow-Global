@@ -22,13 +22,12 @@ htdocs/                  <- корень САЙТА (пребилд, комми�
 └── api/
     ├── lead.php         <- единый контроллер: принимает POST-заявку, дёргает модули
     ├── telegram.php     <- API-модуль: отправка в Telegram-бот
-    ├── sheets.php       <- API-модуль: запись в Google Sheets (Apps Script)
+    ├── sheets.php       <- API-модуль: запись в Google Sheets (через Google Forms)
     └── config.example.php  <- шаблон конфига (сам config.php в git не попадает)
 
 public/                  <- исходники статики: .htaccess и api/*.php (копируются в htdocs при билде)
 src/                     <- исходники React-приложения (entry-server.tsx — entry для пререндера)
 scripts/prerender.mjs    <- скрипт пререндера: инжектит SSR-разметку в htdocs/index.html
-google-apps-script/Code.gs  <- код макроса для Google Таблицы
 ```
 
 ## Деплой на хостинг
@@ -58,16 +57,22 @@ google-apps-script/Code.gs  <- код макроса для Google Таблиц�
 3. **Важно:** отправьте боту `/start` (или добавьте его в группу), иначе Telegram не даст ему писать.
 4. Впишите токен и chat_id в `api/config.php` на сервере.
 
-## Настройка Google Sheets (опционально)
+## Настройка Google Sheets (опционально, через Google Forms)
 
-1. Создайте Google Таблицу.
-2. Меню «Расширения -> Apps Script», вставьте код из `google-apps-script/Code.gs`.
-3. «Развернуть -> Новое развёртывание -> Веб-приложение»:
-   запуск **от моего имени**, доступ — **все** (Anyone).
-4. Скопируйте URL развёртывания (`https://script.google.com/macros/s/.../exec`)
-   в `api/config.php` -> `sheets_webapp_url`.
+Запись в таблицу работает без Apps Script и без API-ключей: PHP отправляет POST
+прямо в Google Форму, привязанную к таблице.
 
-Если `sheets_webapp_url` пустой — модуль просто пропускается, заявки идут только в Telegram.
+1. Создайте [Google Форму](https://forms.google.com) с 7 вопросами типа «Короткий ответ»
+   (все НЕобязательные): Имя, WhatsApp, Цель, Очки, Скидка, Промокод, Дата.
+2. Вкладка «Ответы» -> значок Google Sheets -> привяжите таблицу.
+3. Возьмите ссылку на форму (кнопка «Отправить» -> ссылка `.../viewform`)
+   и вставьте в `api/config.php` -> `google_form_url`.
+4. Узнайте entry-ID каждого вопроса и впишите в `google_form_fields`:
+   - откройте форму как респондент, ПКМ -> «Просмотреть код страницы», поиск по `entry.`;
+   - либо «три точки -> Создать заранее заполненную ссылку», заполните поля и
+     скопируйте ссылку — в ней будут `entry.XXXXXXX=...` в том же порядке, что и вопросы.
+
+Если `google_form_url` пустой — модуль пропускается, заявки идут только в Telegram.
 
 ## Локальная разработка
 

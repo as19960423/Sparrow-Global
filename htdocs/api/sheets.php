@@ -1,9 +1,12 @@
 <?php
 
 /**
- * API-модуль: запись заявки в Google Sheets через веб-приложение Apps Script.
+ * API-модуль: запись заявки в Google Sheets через Google Forms.
  * Вызывается только из контроллера lead.php.
- * Код самого макроса — в google-apps-script/Code.gs (см. README).
+ *
+ * Как это работает: создаётся Google Форма, привязанная к таблице
+ * («Ответы» -> значок Sheets). PHP отправляет POST прямо в форму —
+ * ответ автоматически появляется строкой в таблице. Без Apps Script и API-ключей.
  */
 
 declare(strict_types=1);
@@ -14,29 +17,45 @@ declare(strict_types=1);
  */
 function send_to_google_sheets(array $lead, array $config): array
 {
-    $url = trim($config['sheets_webapp_url'] ?? '');
+    $formUrl = trim($config['google_form_url'] ?? '');
+    $fields  = $config['google_form_fields'] ?? [];
 
-    if ($url === '') {
-        return ['success' => false, 'skipped' => true, 'error' => 'Google Sheets is not configured (sheets_webapp_url).'];
+    if ($formUrl === '' || !is_array($fields) || $fields === []) {
+        return ['success' => false, 'skipped' => true, 'error' => 'Google Forms is not configured (google_form_url / google_form_fields).'];
     }
 
-    $payload = json_encode([
+    // Приводим ссылку к виду .../formResponse (принимает и viewform-ссылку)
+    $formUrl = preg_replace('#/(viewform|prefill).*$#', '/formResponse', $formUrl);
+    if (!str_ends_with($formUrl, '/formResponse')) {
+        $formUrl = rtrim($formUrl, '/') . '/formResponse';
+    }
+
+    $values = [
         'name'      => $lead['name'],
         'whatsapp'  => $lead['whatsapp'],
         'goal'      => $lead['goal'],
-        'score'     => (int)($lead['score'] ?? 0),
-        'discount'  => (int)($lead['discount'] ?? 0),
+        'score'     => (string)(int)($lead['score'] ?? 0),
+        'discount'  => (string)(int)($lead['discount'] ?? 0),
         'promoCode' => (string)($lead['promoCode'] ?? ''),
         'timestamp' => (new DateTime('now', new DateTimeZone('Asia/Almaty')))->format('d.m.Y H:i:s'),
-    ], JSON_UNESCAPED_UNICODE);
+    ];
 
-    $ch = curl_init($url);
+    $payload = [];
+    foreach ($fields as $key => $entryId) {
+        if ($entryId !== '' && isset($values[$key])) {
+            $payload[$entryId] = $values[$key];
+        }
+    }
+
+    if ($payload === []) {
+        return ['success' => false, 'error' => 'google_form_fields has no valid entry IDs.'];
+    }
+
+    $ch = curl_init($formUrl);
     curl_setopt_array($ch, [
         CURLOPT_POST           => true,
-        CURLOPT_POSTFIELDS     => $payload,
-        CURLOPT_HTTPHEADER     => ['Content-Type: application/json'],
+        CURLOPT_POSTFIELDS     => http_build_query($payload),
         CURLOPT_RETURNTRANSFER => true,
-        // Apps Script отвечает редиректом на script.googleusercontent.com — его нужно пройти
         CURLOPT_FOLLOWLOCATION => true,
         CURLOPT_MAXREDIRS      => 5,
         CURLOPT_TIMEOUT        => 15,
@@ -51,8 +70,10 @@ function send_to_google_sheets(array $lead, array $config): array
         return ['success' => false, 'error' => "cURL error: {$curlErr}"];
     }
 
+    // Успешная отправка отдаёт 200 со страницей "Ответ записан".
+    // 400/422 обычно значит неверные entry-ID или обязательное поле не заполнено.
     if ($httpCode < 200 || $httpCode >= 300) {
-        return ['success' => false, 'error' => "Apps Script returned HTTP {$httpCode}"];
+        return ['success' => false, 'error' => "Google Forms returned HTTP {$httpCode} (check entry IDs and required fields)"];
     }
 
     return ['success' => true];
