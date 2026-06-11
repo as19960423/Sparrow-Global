@@ -1,0 +1,30 @@
+nginx.example.conf
+  s_deee412da6a683::t_b89fb034cef742 16-17
+  s_deee412da6a683::t_75212ff1f2d13c 1-15,18-33
+public/.htaccess
+  s_deee412da6a683::t_2561f290a74ef9 16-17
+.htaccess
+  s_deee412da6a683::t_bb80ed9f54c8a0 14-16
+  s_deee412da6a683::t_2c7dd411d9df00 1-13,17-25
+htdocs/.htaccess
+  s_deee412da6a683::t_c0192e5377c51e 16-17
+README.md
+  s_deee412da6a683::t_966d3fa5d841df 16-18
+  s_deee412da6a683::t_21e02355e30cf7 36-47
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "849294fed0ec56978d382a4d7138c8559655f074",
+  "prompts": {},
+  "sessions": {
+    "s_deee412da6a683": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "eb4c9ac6-f3d8-4919-965d-06762fe5c7bb",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Yerbol Syzdyk <yerbol_syzdyk@epam.com>"
+    }
+  }
+}
