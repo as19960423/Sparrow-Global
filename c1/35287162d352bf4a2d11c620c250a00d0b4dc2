@@ -1,0 +1,48 @@
+htdocs/assets/index-GXShKD1z.js
+  s_deee412da6a683::t_c7a58f3c95d455 1-236
+src/main.tsx
+  s_deee412da6a683::t_78dabbf6358253 2,6-7,10,12-18
+htdocs/index.html
+  s_deee412da6a683::t_8d2055555533f1 2,6-7,9,12-52,54-135
+  s_deee412da6a683::t_c7a58f3c95d455 8,53
+public/.htaccess
+  s_deee412da6a683::t_4261a35d4ede8c 21-22,25
+scripts/prerender.mjs
+  s_deee412da6a683::t_40459c0f305f63 1-33
+package.json
+  s_deee412da6a683::t_576922c2ef2481 9
+src/entry-server.tsx
+  s_deee412da6a683::t_abc720c2a39be3 1-16
+src/App.tsx
+  s_deee412da6a683::t_88608c574cb3df 6
+  s_deee412da6a683::t_d05a71edbc2ed2 253,257-258
+  s_deee412da6a683::t_b0d3d24623b894 45-56
+README.md
+  s_deee412da6a683::t_c5b89568bb75d2 9-12
+  s_deee412da6a683::t_00ae94a078dda1 27-28
+  s_deee412da6a683::t_9b8e8e14055ba5 77
+.gitignore
+  s_deee412da6a683::t_72fdbddac5cbaa 3
+index.html
+  s_deee412da6a683::t_5b3f343996ed29 2,6-7,10
+htdocs/assets/index-Bp0_-Vdj.css
+  s_deee412da6a683::t_8d2055555533f1 1
+htdocs/.htaccess
+  s_deee412da6a683::t_c7a58f3c95d455 21-22,25
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "c135287162d352bf4a2d11c620c250a00d0b4dc2",
+  "prompts": {},
+  "sessions": {
+    "s_deee412da6a683": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "eb4c9ac6-f3d8-4919-965d-06762fe5c7bb",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Yerbol Syzdyk <yerbol_syzdyk@epam.com>"
+    }
+  }
+}
