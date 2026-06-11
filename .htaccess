@@ -13,7 +13,7 @@ Options -Indexes
 
   # Исходники и служебные файлы недоступны снаружи (404).
   # ВАЖНО: assets здесь нет — URL /assets/* должен переписываться в htdocs/assets/*
-  RewriteRule ^(\.git|node_modules|src|public|scripts|google-apps-script|\.prerender)(/.*)?$ - [R=404,L]
+  RewriteRule ^(\.git|node_modules|src|public|scripts|storage|\.prerender)(/.*)?$ - [R=404,L]
   RewriteRule ^(package\.json|package-lock\.json|tsconfig\.json|vite\.config\.ts|metadata\.json|README\.md|index\.html|nginx\.example\.conf)$ - [R=404,L]
 
   # Скрытые файлы и папки (кроме .well-known — нужен для Let's Encrypt)

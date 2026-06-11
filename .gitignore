@@ -8,3 +8,8 @@ coverage/
 # Секреты PHP API: в git хранится только config.example.php
 public/api/config.php
 htdocs/api/config.php
+public/api/google-credentials.json
+htdocs/api/google-credentials.json
+
+# Локальная резервная таблица заявок
+storage/

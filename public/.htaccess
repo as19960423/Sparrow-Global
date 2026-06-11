@@ -3,11 +3,14 @@
 # Запрет листинга директорий
 Options -Indexes
 
-# Защита конфига с секретами от прямого доступа
+# Защита конфигов и ключей от прямого доступа
 <Files "config.php">
   Require all denied
 </Files>
 <Files "config.example.php">
+  Require all denied
+</Files>
+<Files "google-credentials.json">
   Require all denied
 </Files>
 

@@ -5,7 +5,8 @@
  *
  * Принимает JSON с фронтенда, валидирует и раздаёт по API-модулям:
  *   - telegram.php -> уведомление в Telegram-бот
- *   - sheets.php   -> запись строки в Google Sheets (если настроено)
+ *   - sheets.php   -> запись напрямую в Google Sheets (Sheets API)
+ *   - storage.php  -> резервная копия в storage/leads.csv на сервере
  */
 
 declare(strict_types=1);
@@ -54,12 +55,14 @@ if ($lead['name'] === '' || $lead['whatsapp'] === '') {
 
 require __DIR__ . '/telegram.php';
 require __DIR__ . '/sheets.php';
+require __DIR__ . '/storage.php';
 
+$storageResult  = save_lead_to_storage($lead);
 $telegramResult = send_to_telegram($lead, $config);
 $sheetsResult   = send_to_google_sheets($lead, $config);
 
-// Заявка считается доставленной, если сработал хотя бы один канал
-$delivered = !empty($telegramResult['success']) || !empty($sheetsResult['success']);
+// Заявка считается принятой, если сработал хотя бы один канал
+$delivered = !empty($telegramResult['success']) || !empty($sheetsResult['success']) || !empty($storageResult['success']);
 
 http_response_code($delivered ? 200 : 502);
 echo json_encode([
@@ -67,4 +70,5 @@ echo json_encode([
     'message'  => $delivered ? 'Lead processed successfully' : 'Failed to deliver lead to any channel',
     'telegram' => $telegramResult,
     'sheets'   => $sheetsResult,
+    'storage'  => $storageResult,
 ], JSON_UNESCAPED_UNICODE);
