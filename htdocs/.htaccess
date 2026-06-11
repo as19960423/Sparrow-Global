@@ -1,0 +1,44 @@
+# Global Sparrow — Apache config для корня сайта (htdocs)
+
+# Запрет листинга директорий
+Options -Indexes
+
+# Защита конфига с секретами от прямого доступа
+<Files "config.php">
+  Require all denied
+</Files>
+<Files "config.example.php">
+  Require all denied
+</Files>
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Красивый адрес API: /api/lead -> /api/lead.php
+  RewriteRule ^api/lead/?$ api/lead.php [L,QSA]
+
+  # SPA fallback: все несуществующие пути отдаём на index.html,
+  # реальные файлы (assets, php, картинки) не трогаем
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . index.html [L]
+</IfModule>
+
+# Кэширование статики (vite-ассеты имеют хэш в имени)
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType image/svg+xml "access plus 1 month"
+  ExpiresByType image/webp "access plus 1 month"
+  ExpiresByType text/html "access plus 0 seconds"
+</IfModule>
+
+# Сжатие текстовых ответов
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml
+</IfModule>
+
+AddDefaultCharset utf-8

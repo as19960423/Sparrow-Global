@@ -55,9 +55,9 @@ export const LeadModal: React.FC<LeadModalProps> = ({
     // Store in localStorage
     localStorage.setItem('sparrow_last_lead', JSON.stringify(lead));
     
-    // Send background API request to send email notification
+    // Send background API request to notify Telegram bot / Google Sheets
     try {
-      await fetch('/api/lead', {
+      await fetch('/api/lead.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

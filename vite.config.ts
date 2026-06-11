@@ -11,12 +11,16 @@ export default defineConfig(() => {
         '@': path.resolve(__dirname, '.'),
       },
     },
+    build: {
+      // Готовый к деплою корень сайта: статика + api/*.php + .htaccess (из public/)
+      outDir: 'htdocs',
+      emptyOutDir: true,
+    },
     server: {
-      // HMR is disabled in AI Studio via DISABLE_HMR env var.
-      // Do not modifyâfile watching is disabled to prevent flickering during agent edits.
-      hmr: process.env.DISABLE_HMR !== 'true',
-      // Disable file watching when DISABLE_HMR is true to save CPU during agent edits.
-      watch: process.env.DISABLE_HMR === 'true' ? null : {},
+      // В dev-режиме PHP API проксируется на локальный php -S (npm run dev:php)
+      proxy: {
+        '/api': 'http://localhost:8080',
+      },
     },
   };
 });
