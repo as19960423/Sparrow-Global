@@ -1,0 +1,68 @@
+index.html
+  s_6a4030861ba6ab::t_eaa232f44bb01e 6
+google-apps-script/Code.gs
+  s_deee412da6a683::t_ea31d0960a692f 1-56
+public/api/lead.php
+  s_deee412da6a683::t_fca247bd352f35 1-70
+public/.htaccess
+  s_deee412da6a683::t_adb71d8def4749 1-44
+public/api/sheets.php
+  s_deee412da6a683::t_f72315dd6c3baa 1-59
+htdocs/api/config.example.php
+  s_deee412da6a683::t_4b2d74e82c30b6 1-27
+htdocs/assets/index-DyLXiTFt.css
+  s_deee412da6a683::t_4b2d74e82c30b6 1
+package.json
+  s_deee412da6a683::t_67f7feb0705f64 2,4,7-9,11,18,21,23
+htdocs/.htaccess
+  s_deee412da6a683::t_4b2d74e82c30b6 1-44
+.gitignore
+  s_deee412da6a683::t_3f98ff89cd8dd6 6-9
+htdocs/api/lead.php
+  s_deee412da6a683::t_4b2d74e82c30b6 1-70
+htdocs/index.html
+  s_deee412da6a683::t_4b2d74e82c30b6 1-14
+htdocs/assets/index-CwYOkHbi.js
+  s_deee412da6a683::t_4b2d74e82c30b6 1-236
+public/api/config.example.php
+  s_deee412da6a683::t_3ebeaaf10625f0 1-27
+README.md
+  s_6a4030861ba6ab::t_11047d807d98c9 1,46,53,55,57,68,71,89
+  s_deee412da6a683::t_b022f86356b53e 3-4,6-7,9,11-20,22-25,27,29-45,47-52,54,56,58-67,69-70,72-88,90-92
+metadata.json
+  s_6a4030861ba6ab::t_da9a4175b4f8e4 5
+vite.config.ts
+  s_deee412da6a683::t_8c84bec7f75054 14-18,20-23
+src/components/LeadModal.tsx
+  s_deee412da6a683::t_5584a1ac75fa2b 58,60
+htdocs/api/sheets.php
+  s_deee412da6a683::t_4b2d74e82c30b6 1-59
+public/api/telegram.php
+  s_deee412da6a683::t_b7271d73530460 1-79
+htdocs/api/telegram.php
+  s_deee412da6a683::t_4b2d74e82c30b6 1-79
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "13bdb123dbb415cefad7aa2be9eb80e8a5d2bf16",
+  "prompts": {},
+  "sessions": {
+    "s_6a4030861ba6ab": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "58690504-0131-4700-a38e-eafba58f3515",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Yerbol Syzdyk <yerbol_syzdyk@epam.com>"
+    },
+    "s_deee412da6a683": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "eb4c9ac6-f3d8-4919-965d-06762fe5c7bb",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Yerbol Syzdyk <yerbol_syzdyk@epam.com>"
+    }
+  }
+}
