@@ -1,0 +1,28 @@
+public/api/sheets.php
+  s_deee412da6a683::t_8b3f5d2bad8366 4,6-9,20-21,23-24,27-33,37-38,41-52,54,57,73-74,76
+public/api/config.example.php
+  s_deee412da6a683::t_be8284766ce6e1 18-20,23-42
+htdocs/api/config.example.php
+  s_deee412da6a683::t_e1db4f3c241e42 18-20,23-42
+htdocs/api/sheets.php
+  s_deee412da6a683::t_e1db4f3c241e42 4,6-9,20-21,23-24,27-33,37-38,41-52,54,57,73-74,76
+README.md
+  s_deee412da6a683::t_8c9ca2a9515d6f 60,62-63,65-75
+  s_deee412da6a683::t_e1b4383be79f27 25
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "f4181936bdd9414a72cae1395cfb2276ac021993",
+  "prompts": {},
+  "sessions": {
+    "s_deee412da6a683": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "eb4c9ac6-f3d8-4919-965d-06762fe5c7bb",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Yerbol Syzdyk <yerbol_syzdyk@epam.com>"
+    }
+  }
+}
